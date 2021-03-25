@@ -154,9 +154,9 @@ class ResNet(nn.Module):
 
         print('raining time consumed by conv1 {:.2f}s'.format( end_conv1- start_conv1))
         print('raining time consumed by conv2 {:.2f}s'.format( end_conv2- start_conv2))
-        print('raining time consumed by conv2 {:.2f}s'.format( end_conv3- start_conv3))
-        print('raining time consumed by conv2 {:.2f}s'.format( end_conv4- start_conv4))
-        print('raining time consumed by conv2 {:.2f}s'.format( end_conv5- start_conv5))
+        print('raining time consumed by conv3 {:.2f}s'.format( end_conv3- start_conv3))
+        print('raining time consumed by conv4 {:.2f}s'.format( end_conv4- start_conv4))
+        print('raining time consumed by conv5 {:.2f}s'.format( end_conv5- start_conv5))
 
         return output
 
