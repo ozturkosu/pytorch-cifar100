@@ -124,6 +124,9 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
+
+        print(" Size of X ")
+        print(x.size())
         
         start_conv1 = time.time()
         output = self.conv1(x)
