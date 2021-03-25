@@ -107,6 +107,9 @@ class GoogleNet(nn.Module):
 
     def forward(self, x):
 
+        print(" Size of X ")
+        print(x.size())
+
         start_prelayer = time.time()
         x = self.prelayer(x)
         end_prelayer = time.time()
