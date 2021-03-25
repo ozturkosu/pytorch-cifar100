@@ -10,6 +10,7 @@
 
 import torch
 import torch.nn as nn
+import time
 
 class BasicBlock(nn.Module):
     """Basic Block for resnet 18 and resnet 34
@@ -123,14 +124,35 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
+        
+        start_conv1 = time.time()
         output = self.conv1(x)
+        end_conv1 = time.time()
+
+        start_conv2 = time.time()
         output = self.conv2_x(output)
+        end_conv2 = time.time()
+
+        start_conv3 = time.time()
         output = self.conv3_x(output)
+        end_conv3 = time.time()
+
+        start_conv4 = time.time()
         output = self.conv4_x(output)
+        end_conv4 = time.time()
+
+        start_conv5 = time.time()
         output = self.conv5_x(output)
+        end_conv5 = time.time()
+
+        start_pool= time.time()
         output = self.avg_pool(output)
+        end_pool = time.time()
+
         output = output.view(output.size(0), -1)
         output = self.fc(output)
+
+        print('raining time consumed by conv1 {:.2f}s'.format( end_conv1- start_conv1))
 
         return output
 
