@@ -167,7 +167,7 @@ class GoogleNet(nn.Module):
 
         print('raining time consumed by a3 {:.3f}s'.format( end_a3 - start_a3))
         print('raining time consumed by b3 {:.3f}s'.format( end_b3 - start_b3))
-        print('raining time consumed by a4 {:.3f}s'.format( end_a4- start_b4))
+        print('raining time consumed by a4 {:.3f}s'.format( end_a4- start_a4))
         print('raining time consumed by b4 {:.3f}s'.format( end_b4- start_b4))
         print('raining time consumed by c4 {:.3f}s'.format( end_c4- start_c4))
 
