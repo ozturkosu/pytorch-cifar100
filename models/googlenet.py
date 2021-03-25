@@ -11,6 +11,8 @@
 
 import torch
 import torch.nn as nn
+import time
+
 
 class Inception(nn.Module):
     def __init__(self, input_channels, n1x1, n3x3_reduce, n3x3, n5x5_reduce, n5x5, pool_proj):
@@ -104,23 +106,55 @@ class GoogleNet(nn.Module):
         self.linear = nn.Linear(1024, num_class)
 
     def forward(self, x):
+
+        start_prelayer = time.time()
         x = self.prelayer(x)
+        end_prelayer = time.time()
+
+
         x = self.maxpool(x)
+
+        start_a3 = time.time()
         x = self.a3(x)
+        end_a3 = time.time()
+
+        start_b3 = time.time()
         x = self.b3(x)
+        end_b3 = time.time()
 
         x = self.maxpool(x)
 
+        start_a4 = time.time()
         x = self.a4(x)
+        end_a4 = time.time()
+
+        start_b4 = time.time()
         x = self.b4(x)
+        end_b4 = time.time()
+
+        start_c4 = time.time()
         x = self.c4(x)
+        end_c4 = time.time()
+
+        start_d4 = time.time()
         x = self.d4(x)
+        end_d4 = time.time()
+
+
+        start_e4 = time.time()
         x = self.e4(x)
+        end_e4 = time.time()
 
         x = self.maxpool(x)
 
+        start_a5 = time.time()
         x = self.a5(x)
+        end_a5 = time.time()
+
+
+        start_b5 = time.time()
         x = self.b5(x)
+        end_b5 = time.time()
 
         #"""It was found that a move from fully connected layers to
         #average pooling improved the top-1 accuracy by about 0.6%,
@@ -130,6 +164,20 @@ class GoogleNet(nn.Module):
         x = self.dropout(x)
         x = x.view(x.size()[0], -1)
         x = self.linear(x)
+
+        print('raining time consumed by a3 {:.3f}s'.format( end_a3 - start_a3))
+        print('raining time consumed by b3 {:.3f}s'.format( end_b3 - start_b3))
+        print('raining time consumed by a4 {:.3f}s'.format( end_a4- start_b4))
+        print('raining time consumed by b4 {:.3f}s'.format( end_b4- start_b4))
+        print('raining time consumed by c4 {:.3f}s'.format( end_c4- start_c4))
+
+
+        print('raining time consumed by d4 {:.3f}s'.format( end_d4 - start_d4))
+        print('raining time consumed by e4 {:.3f}s'.format( end_e4- start_e4))
+        print('raining time consumed by a5 {:.3f}s'.format( end_a5- start_a5))
+        print('raining time consumed by b5 {:.3f}s'.format( end_b5- start_b5))
+
+
 
         return x
 
